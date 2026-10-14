@@ -1,0 +1,30 @@
+# Dependencias
+node_modules/
+package-lock.json
+
+# Variables de entorno (NUNCA subir)
+.env
+.env.local
+.env.production
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Base de datos (opcional, si exportas datos)
+*.sql.bak
+*.dump
+
+# Archivos temporales
+*.tmp
+*.bak

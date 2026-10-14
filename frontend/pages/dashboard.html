@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VIGIA IA</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layaut">
+        <!-- SIDEBAR -->
+        <aside class="sidebar-header">
+            <div class="sidebar-header">
+                <img src="../img/logo.jpeg" alt="VIGIA IA" class="sidebar-logo">
+                <div class="sidebar-brand">
+                    <span class="sidebar-brand-title">VIGIA IA</span>
+                    <span class="sidebar-brand-sub">LogiEstandar</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link active">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="personal.html" class="sidebar-link">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span>Personal</span>
+                </a>
+                <a href="visitantes.html" class="sidebar-link">
+                    <i class="bi bi-person-walking"></i>
+                    <span>Visitantes</span>
+                </a>
+                <a href="residentes.html" class="sidebar-link">
+                    <i class="bi bi-house-door-fill"></i>
+                    <span>Residentes</span>
+                </a>
+                <a href="accesos.html" class="sidebar-link">
+                    <i class="bi bi-door-open-fill"></i>
+                    <span>Accesos</span>
+                </a>
+                <a href="reportes.html" class="sidebar-link">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    <span>Reportes</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <div class="admin-avatar" id="adminInicial">A</div>
+                    <div class="admin-details">
+                        <span class="admin-name" id="adminNombre">Administrador</span>
+                        <span class="admin-role">Administrador</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-logout" id="btnLogout">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Cerrar sesión</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- TopBar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1 class="topbar-title">Dashboard</h1>
+                    <p class="topbar-subtitle">Resumen general del sistema</p>
+                </div>
+                <div class="topbar-right">
+                    <button class="topbar-btn" title="Notificaciones">
+                        <i class="bi bi-bell"></i>
+                    </button>
+                    <button class="topbar-btn" title="Configuración">
+                        <i class="bi bi-gear"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon stat-icon-cyan">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Personal</span>
+                        <span class="stat-value" id="statPersonal">--</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon stat-icon-blue">
+                        <i class="bi bi-person-walking"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Visitantes</span>
+                        <span class="stat-value" id="statVisitantes">--</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon stat-icon-mint">
+                        <i class="bi bi-house-door-fill"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Residentes</span>
+                        <span class="stat-value" id="statResidentes">--</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon stat-icon-amber">
+                        <i class="bi bi-door-open-fill"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Accesos Hoy</span>
+                        <span class="stat-value" id="statAccesosHoy">--</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- content grid -->
+            <section class="content-grid">
+
+                <!-- Chart -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">
+                            <i class="bi bi-graph-up"></i>
+                            Accesos últimos 7 días
+                        </h2>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="chartAccesos" height="120"></canvas>
+                    </div>
+                </div>
+
+                <!-- latest acceses-->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">
+                            <i class="bi bi-clock-history"></i>
+                            Ultimos accesos
+                        </h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table-vigia">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Acción</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablaUltimosAccesos">
+                                    <tr><td colspan="4" class="text-center text-muted">Cargando...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
