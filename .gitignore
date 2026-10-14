@@ -28,3 +28,14 @@ npm-debug.log*
 # Archivos temporales
 *.tmp
 *.bak
+
+# Archivos Excel de reportes (se generan dinámicamente)
+*.xlsx
+*.xls
+
+# Archivos de prueba
+test.txt
+prueba.txt
+
+# package.json de la raíz (solo el de backend es válido)
+/package.json
