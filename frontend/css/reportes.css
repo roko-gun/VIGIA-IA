@@ -1,0 +1,128 @@
+/* ============================================================
+                    VIGIA IA - Reportes
+   ============================================================ */
+:root {
+
+    --navy-deep:    #0A1628;
+    --steel-deep:   #111E32;
+    --cyan-electric: #00E5FF;
+    --blue-cyber:   #1E88E5;
+    --mint-neon:    #00FFB2;
+    --red-alert:    #FF3B5C;
+    --amber-warm:   #FFB020;
+    --white-pure:   #FFFFFF;
+    --silver-fog:   #8A9BB0;
+    --border-dark:  #1F2D45;
+
+    --font-title: 'Poppins', sans-serif;
+    --font-text:  'Inter', sans-serif;
+}
+
+
+.reportes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.reporte-card {
+    background: var(--steel-deep);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.reporte-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-cyber), var(--cyan-electric));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.reporte-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 229, 255, 0.4);
+    box-shadow: 0 12 px 40px rgba(0, 229, 255, 0.15);
+}
+
+.reporte-card:hover::before {
+    opacity: 1;
+}
+
+.reporte-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+}
+
+.reporte-icon-cyan  { background: rgba(0, 229, 255, 0.12); color: var(--cyan-electric); }
+.reporte-icon-blue  { background: rgba(30, 136, 229, 0.15); color: var(--blue-cyber); }
+.reporte-icon-mint  { background: rgba(0, 255, 178, 0.12); color: var(--mint-neon); }
+.reporte-icon-amber { background: rgba(255, 176, 32, 0.12); color: var(--amber-warm); }
+
+.reporte-info h3 {
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white-pure);
+    margin-bottom: 0.4rem;
+}
+
+.reporte-info p {
+    font-size: 0.85rem;
+    color: var(--silver-fog);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.reporte-acciones {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: auto;
+}
+
+.reporte-acciones button {
+    flex: 1;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+}
+
+#panelResultados {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.spinner-btn {
+    display: inline-block;
+    width: 0.9rem;
+    height: 0.9rem;
+    border: 2px solid rgba(10, 22, 40, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--navy-deep);
+    animation: spin 0.7s ease;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residentes - VIGIA IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/personal.css">
+</head>
+<body class="dashboard-body">
+    
+    <div class="dashboard-layout">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../img/logo.jpeg" alt="VIGIA IA" class="sidebar-logo">
+                <div class="sidebar-brand">
+                    <span class="sidebar-brand-title">VIGIA IA</span>
+                    <span class="sidebar-brand-sub">LogiEstandar</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="personal.html" class="sidebar-link">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <span>Personal</span>
+                </a>
+                <a href="visitantes.html" class="sidebar-link">
+                    <i class="bi bi-person-walking"></i>
+                    <span>Visitantes</span>
+                </a>
+                <a href="residentes.html" class="sidebar-link active">
+                    <i class="bi bi-house-door-fill"></i>
+                    <span>Residentes</span>
+                </a>
+                <a href="accesos.html" class="sidebar-link">
+                    <i class="bi bi-door-open-fill"></i>
+                    <span>Accesos</span>
+                </a>
+                <a href="reportes.html" class="sidebar-link">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    <span>Reportes</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <div class="admin-avatar" id="adminInicial">A</div>
+                    <div class="admin-details">
+                        <span class="admin-name" id="adminNombre">Administrador</span>
+                        <span class="admin-role">Administrador</span>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn-logout" id="btnLogout">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Cerrar sesión</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1 class="topbar-title">Gestión de Residentes</h1>
+                    <p class="topbar-subtitle">Administra el registro de residentes del conjunto</p>
+                </div>
+                <div class="topbar-right">
+                    <button class="btn-primary-vigia" id="btnNuevoResidente">
+                        <i class="bi bi-plus-lg"></i>
+                        <span>Nuevo Residente</span>
+                    </button>
+                </div>
+            </header>
+            
+            <section class="toolbar">
+                <div class="search-box">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="buscador" placeholder="Buscar por nombre, documento o apartamento...">
+                </div>
+                <div class="toolbar-info">
+                    <span id="contadorResidentes">0 registros</span>
+                </div>
+            </section>
+            
+            <section class="panel">
+                <div class="panel-body no-padding">
+                    <div class="table-responsive">
+                        <table class="table-vigia table-full">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Documento</th>
+                                    <th>Apartamento</th>
+                                    <th>Torre</th>
+                                    <th>Teléfono</th>
+                                    <th>Correo</th>
+                                    <th class="text-end">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaResidentes">
+                                <tr><td colspan="8" class="text-center text-muted">Cargando...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        
+        </main>
+    </div>
+    
+    <div class="modal-vigia-overlay" id="modalResidente">
+        <div class="modal-vigia">
+            <div class="modal-vigia-header">
+                <h3 id="modalTitle">Nuevo Residente</h3>
+                <button class="modal-close" id="btnCerrarModal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            
+            <form id="formResidente" class="modal-vigia-body">
+                <input type="hidden" id="residenteId">
+                
+                <div class="form-row">
+                    <div class="form-group-custom">
+                        <label for="inputNombre">Nombre completo *</label>
+                        <div class="input-icon-wrapper">
+                            <i class="bi bi-person"></i>
+                            <input type="text" id="inputNombre" placeholder="Ej: Juan Pérez" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group-custom">
+                        <label for="inputDocumento">Documento *</label>
+                        <div class="input-icon-wrapper">
+                            <i class="bi bi-card-text"></i>
+                            <input type="text" id="inputDocumento" placeholder="Ej: 12345678" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group-custom">
+                        <label for="inputApartamento">Apartamento *</label>
+                        <div class="input-icon-wrapper">
+                            <i class="bi bi-door-closed"></i>
+                            <input type="text" id="inputApartamento" placeholder="Ej: 101" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group-custom">
+                        <label for="inputTorre">Torre</label>
+                        <div class="input-icon-wrapper">
+                            <i class="bi bi-building"></i>
+                            <input type="text" id="inputTorre" placeholder="Ej: A">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group-custom">
+                        <label for="inputTelefono">Teléfono</label>
+                        <div class="input-icon-wrapper">
+                            <i class="bi bi-telephone"></i>
+                            <input type="text" id="inputTelefono" placeholder="Ej: 3001234567">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group-custom">
+                        <label for="inputCorreo">Correo electrónico</label>
+                        <div class="input-icon-wrapper">
+                            <i class="bi bi-envelope"></i>
+                            <input type="email" id="inputCorreo" placeholder="Ej: juan@correo.com">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="politica-datos">
+                    <label class="politica-check">
+                        <input type="checkbox" id="aceptoPolitica" required>
+                        <span>
+                            Confirmo que cuento con la autorización del titular para el tratamiento de sus
+                            datos personales, conforme a la <a href="#" id="linkPolitica">Ley 1581 de 2012</a>
+                            y las políticas de LogiEstandar – VIGIA IA.
+                        </span>
+                    </label>
+                </div>
+                
+                <div class="modal-vigia-footer">
+                    <button type="button" class="btn-secondary-vigia" id="btnCancelar">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn-primary-vigia" id="btnGuardar">
+                        <i class="bi bi-check-lg"></i>
+                        <span id="btnGuardarTexto">Guardar</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="modal-vigia-overlay" id="modalPolitica">
+        <div class="modal-vigia">
+            <div class="modal-vigia-header">
+                <h3>Política de Tratamiento de Datos</h3>
+                <button class="modal-close" id="btnCerrarPolitica">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="modal-vigia-body politica-texto">
+                <p>LogiEstandar – VIGIA IA, en cumplimiento de la Ley 1581 de 2012 y el Decreto 1377 de 2013, informa que los datos personales recolectados serán utilizados exclusivamente para:</p>
+                <ul>
+                    <li>Gestión de residentes y control de acceso al conjunto residencial.</li>
+                    <li>Comunicación de novedades administrativas y de seguridad.</li>
+                    <li>Generación de reportes internos y trazabilidad de visitas.</li>
+                    <li>Atención de requerimientos administrativos.</li>
+                </ul>
+                <p>El titular tiene derecho a conocer, actualizar, rectificar y suprimir sus datos personales, así como a revocar la autorización otorgada, mediante solicitud escrita al administrador del sistema.</p>
+                <p>Los datos biométricos (imagen facial) son considerados datos sensibles y solo serán tratados con autorización expresa del titular.</p>
+            </div>
+            <div class="modal-vigia-footer">
+                <button type="button" class="btn-primary-vigia" id="btnCerrarPolitica2">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast-vigia" id="toastVigia"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/residentes.js"></script>
+</body>
+</html>
