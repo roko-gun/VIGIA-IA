@@ -1,0 +1,77 @@
+:root {
+
+    --navy-deep:    #0A1628;
+    --steel-deep:   #111E32;
+    --cyan-electric: #00E5FF;
+    --blue-cyber:   #1E88E5;
+    --mint-neon:    #00FFB2;
+    --red-alert:    #FF3B5C;
+    --amber-warm:   #FFB020;
+    --white-pure:   #FFFFFF;
+    --silver-fog:   #8A9BB0;
+    --border-dark:  #1F2D45;
+
+    --font-title: 'Poppins', sans-serif;
+    --font-text:  'Inter', sans-serif;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+    border: 2px solid rgba(0, 229, 255, 0.4);
+    box-shadow: 
+        0 0 40px rgba(0, 229, 255, 0.25),
+        0 0 80px rgba(0, 229, 255, 0.1);
+}
+
+video, canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+canvas {
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+#status {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--silver-fog);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.status-ok {
+    color: #00FFB2 !important;
+    text-shadow: 0 0 20px rgba(0, 255, 178, 0.6);
+    animation: pulseStatus 1.5s ease-in-out infinite;
+}
+
+.status-err {
+    color: #FF3B5C !important;
+}
+
+@keyframes pulseStatus {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.pannel-scanner {
+    padding: 2.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--steel-deep), var(--navy-deep));
+    border-radius: 20px;
+    border: 1px solid var(--border-dark);
+    position: relative;
+}
