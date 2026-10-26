@@ -1,30 +1,24 @@
 const db = require('../config/db');
-const { buscarPorId } = require('./Visitante');
 
-const personal = {
-    // listar todo el personal
+const Personal = {
     listar: (callback) => {
         const sql = 'SELECT * FROM personal ORDER BY fecha_registro DESC';
         db.query(sql, callback);
     },
-
-    // Buscar por id 
+    
     buscarPorId: (id, callback) => {
         const sql = 'SELECT * FROM personal WHERE id = ?';
         db.query(sql, [id], callback);
     },
-
-    buscarPorCedula: (cedula, callback) => {   
+    
+    
+    buscarPorCedula: (cedula, callback) => {
         const sql = 'SELECT * FROM personal WHERE cedula = ?';
         db.query(sql, [cedula], callback);
     },
-
-    // crear nuevo registro de personal
+    
     crear: (datos, callback) => {
-        const sql = `
-            INSERT INTO personal (nombre, cedula, cargo, area, telefono, foto)
-            VALUES (?, ?, ?, ?, ?, ?)
-            `;
+        const sql = 'INSERT INTO personal (nombre, cedula, cargo, area, telefono, foto) VALUES (?, ?, ?, ?, ?, ?)';
         const valores = [
             datos.nombre,
             datos.cedula,
@@ -36,13 +30,8 @@ const personal = {
         db.query(sql, valores, callback);
     },
 
-    // Actualizar personal
     actualizar: (id, datos, callback) => {
-        const sql = `
-            UPDATE personal
-            SET nombre = ?, cedula = ?, cargo = ?, area = ?, telefono = ?, foto = ?
-            WHERE id = ?
-            `;
+        const sql = 'UPDATE personal SET nombre = ?, cedula = ?, cargo = ?, area = ?, telefono = ?, foto = ? WHERE id = ?';
         const valores = [
             datos.nombre,
             datos.cedula,
@@ -55,11 +44,26 @@ const personal = {
         db.query(sql, valores, callback);
     },
 
-    // eliminar personal
     eliminar: (id, callback) => {
         const sql = 'DELETE FROM personal WHERE id = ?';
+        db.query(sql, [id], callback);
+    },
+
+// ============ FUNCIONES PARA RECONOCIMIENTO ============
+    guardarDescriptor: (id, descriptor, callback) => {
+        const sql = 'UPDATE personal SET descriptor_facial = ? WHERE id = ?';
+        db.query(sql, [descriptor, id], callback);
+    },
+
+    obtenerRostros: (callback) => {
+        const sql = 'SELECT id, nombre, cedula, cargo, descriptor_facial FROM personal WHERE descriptor_facial IS NOT NULL';
+        db.query(sql, callback);
+    },
+
+    eliminarDescriptor: (id, callback) => {
+        const sql = 'UPDATE personal SET descriptor_facial = NULL WHERE id = ?';
         db.query(sql, [id], callback);
     }
 };
 
-module.exports = personal;
+module.exports = Personal;
