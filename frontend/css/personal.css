@@ -508,3 +508,41 @@
         width: 100%;
     }
 }
+/* ============ FIX: Canvas encima del video ============ */
+.video-container {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 640px !important;
+    margin: 0 auto !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: #000 !important;
+    border: 2px solid rgba(0, 229, 255, 0.4) !important;
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.25) !important;
+    aspect-ratio: 4 / 3;
+}
+
+.video-container video {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.video-container canvas {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+}
+
+/* Botón de salida */
+.btn-accion.salida:hover {
+    border-color: var(--amber-warm);
+    color: var(--amber-warm);
+    box-shadow: 0 0 12px rgba(255, 176, 32, 0.3);
+}

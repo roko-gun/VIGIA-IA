@@ -8,6 +8,7 @@ const personalRoutes = require('./routes/personal.routes');
 const accesosRoutes = require('./routes/accesos.routes');
 const reportesRoutes = require('./routes/reportes.routes');
 const dashboardRoutes = require('./routes/dashboard.routes');
+const rostrosRoutes = require('./routes/rostros.routes');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/api/personal', personalRoutes);
 app.use('/api/accesos', accesosRoutes);
 app.use('/api/reportes', reportesRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/rostros', rostrosRoutes);
 
 app.listen(3000, () => {
   console.log('Servidor activo en puerto 3000');

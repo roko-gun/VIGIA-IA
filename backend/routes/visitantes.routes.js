@@ -2,23 +2,25 @@ const express = require('express');
 const router = express.Router();
 const visitantesController = require('../controllers/visitantes.controller');
 
-//listar todos
+// Listar todos
 router.get('/', visitantesController.listar);
 
-//Buscar por documento siempre debe ir antes del ID
+// Buscar por documento (ANTES DE /:id)
 router.get('/documento/:documento', visitantesController.buscarPorDocumento);
 
 // Buscar por ID
 router.get('/:id', visitantesController.buscarPorId);
 
-// crear
+// Crear
 router.post('/', visitantesController.crear);
 
-//actaulizar
+// Actualizar
 router.put('/:id', visitantesController.actualizar);
 
-//eliminar
+// Registrar salida
+router.put('/:id/salida', visitantesController.registrarSalida);
+
+// Eliminar
 router.delete('/:id', visitantesController.eliminar);
 
 module.exports = router;
-

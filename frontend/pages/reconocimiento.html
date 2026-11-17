@@ -1,47 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reconocimiento Facial - VIGIA IA</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/reconocimiento.css">
-    <style>
-    .video-container { position: relative; width: 640px; height: 480px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 2px solid #00E5FF; box-shadow: 0 0 30px rgba(0,229,255,0.3); }
-    video, canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-    #status { font-family: 'Poppins', sans-serif; text-align: center; margin-top: 20px; font-size: 1.2rem; font-weight: 600; }
-    .status-ok { color: #00FFB2; }
-    .status-err { color: #FF3B5C; }
-    </style>
-
+    <link rel="stylesheet" href="../css/personal.css">
 </head>
-
 <body class="dashboard-body">
+    
     <div class="dashboard-layout">
-        <aside class="sidebar">... (copia el sidebar de personal.html aquí) ...</aside>
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../img/logo.jpeg" alt="VIGIA IA" class="sidebar-logo">
+                <div class="sidebar-brand">
+                    <span class="sidebar-brand-title">VIGIA IA</span>
+                    <span class="sidebar-brand-sub">LogiEstandar</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="sidebar-link"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
+                <a href="personal.html" class="sidebar-link"><i class="bi bi-person-badge-fill"></i><span>Personal</span></a>
+                <a href="visitantes.html" class="sidebar-link"><i class="bi bi-person-walking"></i><span>Visitantes</span></a>
+                <a href="residentes.html" class="sidebar-link"><i class="bi bi-house-door-fill"></i><span>Residentes</span></a>
+                <a href="accesos.html" class="sidebar-link"><i class="bi bi-door-open-fill"></i><span>Accesos</span></a>
+                <a href="reportes.html" class="sidebar-link"><i class="bi bi-bar-chart-fill"></i><span>Reportes</span></a>
+                <a href="reconocimiento.html" class="sidebar-link active"><i class="bi bi-camera-video-fill"></i><span>Reconocimiento</span></a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <div class="admin-avatar" id="adminInicial">A</div>
+                    <div class="admin-details">
+                        <span class="admin-name" id="adminNombre">Administrador</span>
+                        <span class="admin-role">Administrador</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-logout" id="btnLogout"><i class="bi bi-box-arrow-right"></i><span>Cerrar sesión</span></a>
+            </div>
+        </aside>
+        
         <main class="main-content">
+            
             <header class="topbar">
-                <h1 class="topbar-title">Control de Acceso Biométrico</h1>
+                <div class="topbar-left">
+                    <h1 class="topbar-title">Control de Acceso Biométrico</h1>
+                    <p class="topbar-subtitle">Identificación automática de personal y residentes</p>
+                </div>
+                <div class="topbar-right">
+                    <span id="totalRostros" class="badge-tipo personal" style="padding:0.5rem 1rem; font-size:0.85rem;">
+                        <i class="bi bi-people-fill"></i> 0 rostros registrados
+                    </span>
+                </div>
             </header>
-            <div class="panel" style="padding: 2rem; text-align: center;">
+            
+            <div class="panel" style="padding: 2.5rem; text-align: center;">
                 <div class="video-container">
                     <video id="video" autoplay muted playsinline></video>
                     <canvas id="overlay"></canvas>
                 </div>
-                <div id="status">Cargando modelos de IA...</div>
-                <button class="btn-secondary-vigia mt-3" onclick="toggleCamera()">
+                
+                <div id="status" style="margin-top: 25px; font-size: 1.3rem; font-weight: 600; color: var(--silver-fog);">
+                    Iniciando cámara...
+                </div>
+                
+                <div id="resultado" style="margin-top: 1rem; font-size: 2rem; font-weight: 800; font-family: var(--font-title);"></div>
+                
+                <button class="btn-secondary-vigia mt-3" id="btnToggleCamara">
                     <i class="bi bi-camera-video"></i> <span id="btnText">Detener Cámara</span>
                 </button>
             </div>
+        
         </main>
     </div>
     
+    <div class="toast-vigia" id="toastVigia"></div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.4/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
     <script src="../js/auth.js"></script>
-    <script src="../js/reconocimiento.js"></script>
+    <script script src="../js/reconocimiento.js"></script>
 </body>
 </html>

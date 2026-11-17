@@ -5,7 +5,10 @@ const accesosController = require('../controllers/accesos.controller');
 // Listar todos
 router.get('/', accesosController.listar);
 
-// Filtros (DEBEN IR ANTES DE /:id)
+// Ultimo acceso (antes de /id)
+router.get('/ultimo/:tipo/:id', accesosController.ultimoAcceso);
+
+// Filtros
 router.get('/tipo/:tipo', accesosController.listarPorTipo);
 router.get('/accion/:accion', accesosController.listarPorAccion);
 router.get('/fecha/:fecha', accesosController.listarPorFecha);
