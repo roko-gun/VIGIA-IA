@@ -35,6 +35,7 @@ app.use('/api/reportes', reportesRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/rostros', rostrosRoutes);
 
-app.listen(3000, () => {
-  console.log('Servidor activo en puerto 3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor activo en puerto ${PORT}`);
 });
