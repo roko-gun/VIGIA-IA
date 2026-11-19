@@ -2,7 +2,7 @@
 // VIGIA IA - Reconocimiento Facial Unificado
 // ============================================================
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://vigia-ia-1.onrender.com/api';
 const MODEL_PATH = '../models';
 
 const video = document.getElementById('video');

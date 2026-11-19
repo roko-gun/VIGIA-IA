@@ -2,7 +2,7 @@
 // VIGIA IA - Módulo Accesos
 // ============================================================
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://vigia-ia-1.onrender.com/api';
 
 let listaAccesos = [];
 

@@ -2,7 +2,7 @@
 // VIGIA IA - Módulo Reportes
 // ============================================================
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://vigia-ia-1.onrender.com/api';
 
 const panelResultados = document.getElementById('panelResultados');
 const tituloResultado = document.getElementById('tituloResultado');

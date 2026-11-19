@@ -2,7 +2,7 @@
 // VIGIA IA - Módulo Personal con Captura de Rostro
 // ============================================================
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://vigia-ia-1.onrender.com/api';
 const MODEL_PATH = '../models';
 
 let listaPersonal = [];

@@ -2,7 +2,7 @@
 // VIGIA IA - Dashboard con Ingresos y Salidas
 // ============================================================
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://vigia-ia-1.onrender.com/api';
 
 async function cargarDashboard() {
     try {
