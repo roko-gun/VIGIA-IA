@@ -13,7 +13,7 @@ const rostrosRoutes = require('./routes/rostros.routes');
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://localhost:5500', 'http://127.0.0.1:8080', 'http://127.0.0.1:5500'],
+  origin: ['http://localhost:8080', 'http://localhost:5500', 'http://127.0.0.1:8080', 'http://127.0.0.1:5500', 'https://resend-overfeed-barstool.ngrok-free.dev', 'https://zhj099rk-8080.use2.devtunnels.ms/'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
